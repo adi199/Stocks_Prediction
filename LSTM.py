@@ -1,4 +1,3 @@
-import numpy as np
 from Parameter import Parameter
 from Helper import *
 
@@ -50,14 +49,7 @@ class LSTM:
             o[step] = sigmoid((self.W_O.value @ z) + self.B_O.value)
 
             h[step] = o[step] * tanh(c[step])
-            
-            # print('--------Step {}--------'.format(step))
-            # print('\th\t{}'.format(h[step].shape))
-            # print('\tc\t{}'.format(c[step].shape))
-            # print('\tf\t{}'.format(f[step].shape))
-            # print('\ti\t{}'.format(i[step].shape))
-            # print('\tc_bar\t{}'.format(c_bar[step].shape))
-            # print('\to\t{}'.format(o[step].shape))
+
         self.f, self.i, self.c_bar, self.c, self.o, self.h = f, i , c_bar, c, o, h
         v = self.W_V.value @ self.h[-1] + self.B_V.value
         
