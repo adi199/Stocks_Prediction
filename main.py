@@ -17,7 +17,7 @@ def plot_graph(y_true, y_pred):
 
 if __name__ == '__main__':
 
-    input_file = 'data.csv' if len(sys.argv) == 1 else sys.argv[1]  # Checking for input file path in sys arguments
+    input_file = 'https://utd-data-files.s3.amazonaws.com/stocks_CSCO.csv'
     data = pd.read_csv(input_file)   # reading data from input file
 
     dates = data.iloc[:, [0]]   # Selecting dates from input data
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print('y_test\t{}'.format(y_test.shape))
 
     # Creating LSTM model
-    model = LSTM(learning_rate=0.1, max_iterations=100, time_step=2, input_shape=(1, 1), hidden_layers=5)
+    model = LSTM(learning_rate=0.01, max_iterations=500, time_step=2, input_shape=(1, 1), hidden_layers=2)
     model.fit(x_train, y_train)
 
     y_pred = model.predict(x_test)
